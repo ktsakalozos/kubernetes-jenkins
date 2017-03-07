@@ -29,8 +29,17 @@ BUNDLE_REPOSITORY="https://github.com/ktsakalozos/bundle-canonical-kubernetes.gi
 rm -rf bundle
 git clone ${BUNDLE_REPOSITORY} bundle
 
+
+rm -rf ./bundles/cdk-flannel
 bundle/bundle -o ./bundles/cdk-flannel -c ${CHANNEL} k8s/cdk cni/flannel
+rm -rf ./bundles/core-flannel
 bundle/bundle -o ./bundles/core-flannel -c ${CHANNEL} k8s/core cni/flannel
+
+mkdir /var/tmp/bundles
+rm -rf /var/tmp/bundles/cdf-flannel
+cp -r ./bundles/cdk-flannel /var/tmp/bundles/
+rm -rf /var/tmp/bundles/core-flannel
+cp -r ./bundles/core-flannel /var/tmp/bundles/
 
 
 # CDK="cs:~${ID}/bundle/canonical-kubernetes"
