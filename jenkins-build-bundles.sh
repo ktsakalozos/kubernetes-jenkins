@@ -26,6 +26,7 @@ export JUJU_REPOSITORY=${SCRIPT_DIR}/charms
 source ${SCRIPT_DIR}/define-juju.sh
 
 BUNDLE_REPOSITORY="https://github.com/ktsakalozos/bundle-canonical-kubernetes.git"
+rm -rf bundle
 git clone ${BUNDLE_REPOSITORY} bundle
 
 bundle/bundle -o ./bundles/cdk-flannel -c ${CHANNEL} k8s/cdk cni/flannel
